@@ -1,6 +1,7 @@
 const Form = require('../models/form.model');
 
 async function createForm(form) {
+    console.log(form)
     const newPage = new Form(form);
     await newPage.save()
 }

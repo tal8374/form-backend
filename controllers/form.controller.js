@@ -2,6 +2,7 @@ var formService = require('../services/form.service');
 
 async function createForm(req, res) {
     try {
+        console.log(req.body)
         await formService.createForm(req.body);
         res.send(true);
     } catch (error) {

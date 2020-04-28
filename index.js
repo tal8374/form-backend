@@ -1,5 +1,8 @@
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 3002;
 var express = require('express');
+var path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 var app = express();
 
 const mongoose = require('mongoose');
@@ -10,10 +13,18 @@ const formRouter = require('./routes/form.route');
 var http = require('http');
 var server = http.Server(app);
 
-app.use(express.static('client'));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 server.listen(PORT, function() {
-  console.log('Chat server running');
+  console.log('server is running');
 });
 
 mongoose.connect(config.mongo_url, {}, function (err) {
