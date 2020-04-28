@@ -2,10 +2,6 @@ var PORT = process.env.PORT || 5000;
 var express = require('express');
 var app = express();
 
-const createError = require('http-errors');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const mongoose = require('mongoose');
 const config = require('./config');
 
