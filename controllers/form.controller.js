@@ -2,7 +2,6 @@ var formService = require('../services/form.service');
 
 async function createForm(req, res) {
     try {
-        console.log(req.body)
         await formService.createForm(req.body);
         res.send(true);
     } catch (error) {
@@ -12,6 +11,7 @@ async function createForm(req, res) {
 
 async function getForms(req, res) {
     try {
+        console.log(req.cookies)
         let forms = await formService.getForms();
         res.send(forms);
     } catch (error) {
