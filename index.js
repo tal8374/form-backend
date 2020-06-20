@@ -11,6 +11,8 @@ const config = require('./config');
 const formRouter = require('./routes/form.route');
 const userRouter = require('./routes/user.route');
 
+const userService = require('./services/user.service');
+
 var http = require('http');
 var server = http.Server(app);
 
@@ -41,14 +43,14 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use(function (req, res, next) {
-//   if (req.cookies.token == null) {
-//     res.send(401);
-//     return;
-//   }
+app.use(function (req, res, next) {
+  if (req.cookies.token != null) {
+    let user = userService.revertToken(req.cookies.token);
+    req.user = user;
+  }
 
-//   next();
-// });
+  next();
+});
 
 
 server.listen(PORT, function () {

@@ -17,7 +17,11 @@ async function createToken(payload) {
 }
 
 function revertToken(token) {
-    return jwt.decode(token, 'someSecret');
+    try {
+        return jwt.decode(token, 'someSecret');
+    } catch (error) {
+        return null;
+    }
 }
 
 module.exports = {
