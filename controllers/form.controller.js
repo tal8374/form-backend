@@ -11,7 +11,6 @@ async function createForm(req, res) {
 
 async function getForms(req, res) {
     try {
-        console.log(req.cookies)
         let forms = await formService.getForms();
         res.send(forms);
     } catch (error) {

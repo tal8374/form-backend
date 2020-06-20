@@ -5,7 +5,6 @@ async function createUser(req, res) {
         await userService.createUser(req.body);
         res.send(true);
     } catch (error) {
-        console.log(error.toString());
         res.status(409).send(error.toString())
     }
 }
@@ -20,21 +19,17 @@ async function loginUser(req, res) {
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
         res.send(true);
     } catch (error) {
-        console.log(error.toString());
         res.status(409).send(error.toString())
     }
 }
 
 async function isLoggedIn(req, res) {
     try {
-        console.log('token', req.cookies.token)
         if (req.cookies.token == null)
             res.status(409).send('No cookie');
         let result = userService.revertToken(req.cookies.token);
-        console.log(result)
         res.send(result);
     } catch (err) {
-        console.log(err)
         res.status(409).send('No cookie');
     }
 }

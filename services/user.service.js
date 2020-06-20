@@ -12,7 +12,6 @@ async function loginUser(user) {
 }
 
 async function createToken(payload) {
-    console.log(payload)
     const token = jwt.sign(payload, 'someSecret')
     return token;
 }
